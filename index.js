@@ -90,6 +90,13 @@ QueryBuilder.prototype.or = function(clause) {
     return this;
 };
 
+QueryBuilder.prototype.order = function(order) {
+
+    this._order = order;
+
+    return this;
+};
+
 QueryBuilder.prototype.limit = function(limit) {
 
     this._limit = limit;

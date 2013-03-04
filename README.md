@@ -1,6 +1,6 @@
 node-querybuilder
 =================
 
-docs coming soon.
+docs coming soon. Currently is only MySQL supported.
 
 Module under MIT Licence

@@ -76,7 +76,7 @@ var ToMysql = {
 
     _parseTable: function() {
         if (typeof this.qb._table == 'string') {
-            return this.qb._table;
+            return this._escapeField(this.qb._table);
         }
 
         throw "No Table defined!";
@@ -84,7 +84,8 @@ var ToMysql = {
 
     _parseWhere: function() {
 
-        if (Object.keys(this.qb._where).length > 0) {
+        if (this.qb._where instanceof Object
+            && Object.keys(this.qb._where).length > 0) {
             return ' WHERE ' + this._parseClause(this.qb._where);
         }
 
