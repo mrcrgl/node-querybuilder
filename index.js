@@ -23,28 +23,44 @@ var QueryBuilder = function(methodName) {
     this._loadMethod(methodName);
 };
 
-QueryBuilder.prototype.select = function() {
+QueryBuilder.prototype.select = function(clause) {
+
+    if (undefined !== clause) {
+        this.where(clause);
+    }
 
     this._queryType = 'select';
 
     return this;
 };
 
-QueryBuilder.prototype.update = function() {
+QueryBuilder.prototype.update = function(clause) {
+
+    if (undefined !== clause) {
+        this.set(clause);
+    }
 
     this._queryType = 'update';
 
     return this;
 };
 
-QueryBuilder.prototype.delete = function() {
+QueryBuilder.prototype.delete = function(clause) {
+
+    if (undefined !== clause) {
+        this.where(clause);
+    }
 
     this._queryType = 'delete';
 
     return this;
 };
 
-QueryBuilder.prototype.insert = function() {
+QueryBuilder.prototype.insert = function(clause) {
+
+    if (undefined !== clause) {
+        this.set(clause);
+    }
 
     this._queryType = 'insert';
 
