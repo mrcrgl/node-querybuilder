@@ -71,7 +71,7 @@ QueryBuilder.prototype.call = function(callback) {
 
     var query = this.processor.query(this);
 
-    console.log("Processed: " + query);
+    //console.log("Processed: " + query);
 
     if (typeof this._handler == 'function') {
         this._handler(query, callback);

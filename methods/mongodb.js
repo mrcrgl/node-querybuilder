@@ -58,7 +58,7 @@ var ToMongoDB = {
         if (object instanceof Object || object instanceof Array) {
             // Object
             for (var key in object) {
-                console.dir(key + " -> " + object[key]);
+                //console.dir(key + " -> " + object[key]);
                 object[key] = this._mongonize(object[key]);
             }
 
@@ -73,7 +73,7 @@ var ToMongoDB = {
 
             try {
                 if (testId.test(object.toString())) {
-                    console.dir(" -> -> " + object);
+                    //console.dir(" -> -> " + object);
                     object = new ObjectID(object.toString());
                     return object;
                 }
