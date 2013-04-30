@@ -61,7 +61,7 @@ qb.select('*')
 ```javascript
 
 var Querybuilder = require('querybuilder');
-var qb = new Querybuilder('mongodb');
+var qb = new Querybuilder('mysql');
 
 // Synchronous
 var query = qb.select('*')
