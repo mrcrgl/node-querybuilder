@@ -5,143 +5,143 @@
  *
  */
 
-var QueryBuilder = function(methodName) {
+var QueryBuilder = function (methodName) {
 
-    this._queryType = 'select';
-    this._fields = '*';
-    this._table = null;
-    this._where = {};
-    this._order = {};
-    this._group = [];
-    this._limit = 50;
-    this._offset = 0;
-    this._handler = null;
-    this._set = {};
+  this._queryType = 'select';
+  this._fields = '*';
+  this._table = null;
+  this._where = {};
+  this._order = {};
+  this._group = [];
+  this._limit = 50;
+  this._offset = 0;
+  this._handler = null;
+  this._set = {};
 
-    this.processor = null;
+  this.processor = null;
 
-    this._loadMethod(methodName);
+  this._loadMethod(methodName);
 };
 
-QueryBuilder.prototype.select = function(clause) {
+QueryBuilder.prototype.select = function (clause) {
 
-    if (undefined !== clause) {
-        this.where(clause);
-    }
+  if (undefined !== clause) {
+    this.where(clause);
+  }
 
-    this._queryType = 'select';
+  this._queryType = 'select';
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.update = function(clause) {
+QueryBuilder.prototype.update = function (clause) {
 
-    if (undefined !== clause) {
-        this.set(clause);
-    }
+  if (undefined !== clause) {
+    this.set(clause);
+  }
 
-    this._queryType = 'update';
+  this._queryType = 'update';
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.delete = function(clause) {
+QueryBuilder.prototype.delete = function (clause) {
 
-    if (undefined !== clause) {
-        this.where(clause);
-    }
+  if (undefined !== clause) {
+    this.where(clause);
+  }
 
-    this._queryType = 'delete';
+  this._queryType = 'delete';
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.insert = function(clause) {
+QueryBuilder.prototype.insert = function (clause) {
 
-    if (undefined !== clause) {
-        this.set(clause);
-    }
+  if (undefined !== clause) {
+    this.set(clause);
+  }
 
-    this._queryType = 'insert';
+  this._queryType = 'insert';
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.call = function(callback) {
+QueryBuilder.prototype.call = function (callback) {
 
-    var query = this.processor.query(this);
+  var query = this.processor.query(this);
 
-    //console.log("Processed: " + query);
+  //console.log("Processed: " + query);
 
-    if (typeof this._handler == 'function') {
-        this._handler(query, callback);
-    } else {
-        return query;
-    }
+  if (typeof this._handler == 'function') {
+    this._handler(query, callback);
+  } else {
+    return query;
+  }
 };
 
-QueryBuilder.prototype.set = function(object) {
+QueryBuilder.prototype.set = function (object) {
 
-    this._set = object || {};
+  this._set = object || {};
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.from = function(table) {
+QueryBuilder.prototype.from = function (table) {
 
-    this._table = table;
+  this._table = table;
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.where = function(clause) {
+QueryBuilder.prototype.where = function (clause) {
 
-    this._where = clause;
+  this._where = clause;
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.or = function(clause) {
+QueryBuilder.prototype.or = function (clause) {
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.order = function(order) {
+QueryBuilder.prototype.order = function (order) {
 
-    this._order = order;
+  this._order = order;
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.limit = function(limit) {
+QueryBuilder.prototype.limit = function (limit) {
 
-    this._limit = limit;
+  this._limit = limit;
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.offset = function(offset) {
+QueryBuilder.prototype.offset = function (offset) {
 
-    this._offset = offset;
+  this._offset = offset;
 
-    return this;
+  return this;
 };
 
-QueryBuilder.prototype.handler = function(fnc) {
+QueryBuilder.prototype.handler = function (fnc) {
 
-    this._handler = fnc;
+  this._handler = fnc;
 
-    return this;
+  return this;
 };
 
 QueryBuilder.prototype.and = QueryBuilder.prototype.where
 
-QueryBuilder.prototype._loadMethod = function(methodName) {
-    try {
-        this.processor = require('./methods/' + methodName.toLowerCase());
-    } catch(e) {
-        throw "Method " + methodName + " not found.";
-    }
+QueryBuilder.prototype._loadMethod = function (methodName) {
+  try {
+    this.processor = require('./methods/' + methodName.toLowerCase());
+  } catch (e) {
+    throw "Method " + methodName + " not found.";
+  }
 };
 
 
