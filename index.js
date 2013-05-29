@@ -150,7 +150,7 @@ QueryBuilder.prototype._loadMethod = function(methodName) {
     try {
         this.processor = require(__dirname + '/methods/' + methodName.toLowerCase());
     } catch(e) {
-        throw "Method " + methodName + " not found.";
+        throw "Method " + methodName + " corrupt: " + e;
     }
 };
 

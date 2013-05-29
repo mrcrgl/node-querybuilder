@@ -1,11 +1,7 @@
 {
     "name": "querybuilder",
     "description": "Module to create SQL and NoSQL queries.",
-<<<<<<< HEAD
     "version": "1.1.0",
-=======
-    "version": "1.0.4",
->>>>>>> c6e4b7320c042d7679adc4ee99ff049d4d75c3fb
     "author": "Marc Riegel <mail@marclab.de>",
     "homepage": "https://github.com/mrcrgl/node-querybuilder",
     "repository": {
