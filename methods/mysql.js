@@ -154,7 +154,7 @@ var ToMysql = {
           if (value instanceof Array) {
             var pieces = [];
             for (var n in value) {
-              pieces.push(this._parseClause(value[i], []))
+              pieces.push(this._parseClause(value[n], []));
             }
 
             wheres.push(pieces.join(' OR '));
@@ -163,7 +163,7 @@ var ToMysql = {
           if (value instanceof Array) {
             var pieces = [];
             for (var n in value) {
-              pieces.push(this._parseClause(value[i], []))
+              pieces.push(this._parseClause(value[n], []));
             }
 
             wheres.push(pieces.join(' AND '));
