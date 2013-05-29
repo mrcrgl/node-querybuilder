@@ -82,13 +82,12 @@ QueryBuilder.prototype.call = function (callback) {
 
   var query = this.processor.query(this);
 
-  //console.log("Processed: " + query);
-
   if (typeof this._handler == 'function') {
     this._handler(query, callback);
   } else {
     return query;
   }
+
 };
 
 QueryBuilder.prototype.set = function (object) {
@@ -145,14 +144,14 @@ QueryBuilder.prototype.handler = function (fnc) {
   return this;
 };
 
-QueryBuilder.prototype.and = QueryBuilder.prototype.where
+QueryBuilder.prototype.and = QueryBuilder.prototype.where;
 
-QueryBuilder.prototype._loadMethod = function (methodName) {
-  try {
-    this.processor = require('./methods/' + methodName.toLowerCase());
-  } catch (e) {
-    throw "Method " + methodName + " not found.";
-  }
+QueryBuilder.prototype._loadMethod = function(methodName) {
+    try {
+        this.processor = require(__dirname + '/methods/' + methodName.toLowerCase());
+    } catch(e) {
+        throw "Method " + methodName + " not found.";
+    }
 };
 
 
