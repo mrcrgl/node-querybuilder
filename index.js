@@ -34,6 +34,17 @@ QueryBuilder.prototype.select = function (clause) {
   return this;
 };
 
+QueryBuilder.prototype.count = function (clause) {
+
+  if (undefined !== clause) {
+    this.where(clause);
+  }
+
+  this._queryType = 'count';
+
+  return this;
+};
+
 QueryBuilder.prototype.update = function (clause) {
 
   if (undefined !== clause) {

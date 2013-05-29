@@ -17,6 +17,8 @@ var ToMysql = {
 
     if (this.qb._queryType == 'select') {
       query = this._parseQuerySelect();
+    } else if (this.qb._queryType == 'count') {
+      query = this._parseQueryCount();
     } else if (this.qb._queryType == 'update') {
       query = this._parseQueryUpdate();
     } else if (this.qb._queryType == 'delete') {
@@ -38,6 +40,13 @@ var ToMysql = {
       + this._parseOrder()
       + this._parseGroup()
       + this._parseLimit();
+  },
+
+  _parseQueryCount: function () {
+    return 'SELECT COUNT(*) AS `count` '
+      + ' FROM '
+      + this._parseTable()
+      + this._parseWhere();
   },
 
   _parseQueryUpdate: function () {
