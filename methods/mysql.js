@@ -106,10 +106,12 @@ var ToMysql = {
       if (keys.length > 0) {
         var group = [];
         for (var key in keys) {
-          // TODO escape
-          group.push(key + ' ' + (this.qb._order[key] === 1) ? 'ASC' : 'DESC');
+          if (keys.hasOwnProperty(key)) {
+            // TODO escape
+            group.push(keys[key] + ' ' + ((this.qb._order[keys[key]] === 1) ? 'ASC' : 'DESC'));
+          }
         }
-        return ' GROUP BY ' + group.join(', ');
+        return ' ORDER BY ' + group.join(', ');
       }
 
     }
